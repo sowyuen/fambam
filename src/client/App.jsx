@@ -2,6 +2,8 @@ import React from 'react';
 import { hot } from 'react-hot-loader';
 
 import styles from './style.scss';
+import Moment from 'react-moment';
+import 'moment-timezone';
 
 import Input from "./components/input/input";
 import List from "./components/list/list";
@@ -91,12 +93,19 @@ class App extends React.Component {
   render() {
     return (
         <div>
-        <nav class="navbar navbar-light bg-light">
-            <a class="navbar-brand" href="#">Fambam</a>
+        <nav className="navbar navbar-expand-lg navbar-light bg-light">
+          <a className="navbar-brand" href="#">Fambam</a>
+          <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span className="navbar-toggler-icon"></span>
+          </button>
         </nav>
         <div className="row">
             <div className="col-2 offset-1">
                 <Clock />
+                <Moment format="Do MMMM YYYY" className="p-1">
+                </Moment>
+                <Moment format="dddd">
+                </Moment>
             </div>
         </div>
 
@@ -104,7 +113,7 @@ class App extends React.Component {
             <Input input={this.state.word} setInput={this.setInput} addItem={this.addItem}/>
           </div>
           <div className="row">
-            <div className="col-4 p-2 offset-1 justify-content-center w-75">
+            <div className="col-4 p-2 offset-1">
                 <List
                 list={this.state.list}
                 removeItem={this.removeItem}

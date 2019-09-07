@@ -1,7 +1,10 @@
 import React from 'react';
 import styles from './style.scss';
+import Moment from 'react-moment';
 
 import Item from "../item/item";
+
+
 
 class List extends React.Component {
   constructor() {
@@ -36,7 +39,7 @@ class List extends React.Component {
                     <div className="col-1">
                             <i className="bx bx-checkbox" onClick={() => this.check()}></i>
                     </div>
-                    <div className="col-6">
+                    <div className="col-3">
                        <Item task={task} />
                     </div>
                    <div className="col-1 justify-content-end">
@@ -46,13 +49,16 @@ class List extends React.Component {
                    <div className="col-1 justify-content-end">
                     <i className='bx bxs-trash-alt' onClick={() => this.removal()}></i>
                    </div>
+                   <div className="col-6">
+                   <Moment fromNow></Moment>
+                   </div>
                 </div>
             );
         })
 
     return (
       <div className={styles.list} className="mx-auto">
-          <div className="card bg-light w-75">
+          <div className="card bg-light w-100">
               <div className="card-header text-center font-weight-bold">To Do List
               </div>
               <div className="card-body">
