@@ -33,3 +33,15 @@ class DoneList extends React.Component {
 }
 
 export default DoneList;
+
+
+
+// <div className="col-4 p-2 offset-1 justify-content-center w-75">
+//                     <DoneList
+//                     list={this.state.list}
+//                     editItem={this.editItem}
+//                     updateItem={this.updateItem}
+//                     removeItem={this.removeItem}
+//                     checkItem={this.checkItem}
+//                     />
+// </div>

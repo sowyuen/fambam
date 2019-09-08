@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './style.scss';
+
 import Moment from 'react-moment';
 
 import Item from "../item/item";
@@ -36,29 +37,18 @@ class List extends React.Component {
         console.log(task)
             return(
                 <div draggable = {true} className="row">
-                    <div className="col-1">
-                            <i className="bx bx-checkbox" onClick={() => this.check()}></i>
-                    </div>
-                    <div className="col-3">
-                       <Item task={task} />
-                    </div>
-                   <div className="col-1 justify-content-end">
-                     <i className='bx bxs-edit-alt' onClick={() => this.editing()}></i>
-                    </div>
-
-                   <div className="col-1 justify-content-end">
+                    <input className="ml-4 mr-4 offset-1"type="checkbox" onClick={() => this.check()}/>
+                    <Item task={task} className="ml-4 mr-4"/>
+                     <i className='bx bxs-edit-alt ml-4' onClick={() => this.editing()}></i>
                     <i className='bx bxs-trash-alt' onClick={() => this.removal()}></i>
-                   </div>
-                   <div className="col-6">
-                   <Moment fromNow></Moment>
-                   </div>
+                   <Moment className="ml-4 mr-4" fromNow></Moment>
                 </div>
             );
         })
 
     return (
-      <div className={styles.list} className="mx-auto">
-          <div className="card bg-light w-100">
+      <div className={styles.list} className="mx-auto justify-content-center">
+          <div className="card bg-light">
               <div className="card-header text-center font-weight-bold">To Do List
               </div>
               <div className="card-body">

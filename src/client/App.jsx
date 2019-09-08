@@ -1,14 +1,18 @@
 import React from 'react';
 import { hot } from 'react-hot-loader';
-
 import styles from './style.scss';
+
 import Moment from 'react-moment';
 import 'moment-timezone';
+import ReactAnimatedWeather from 'react-animated-weather';
+import Calendar from 'react-calendar';
 
 import Input from "./components/input/input";
 import List from "./components/list/list";
 import DoneList from "./components/doneList/doneList";
 import Clock from "./components/clock/clock";
+import Particle from "./components/particle/particle";
+
 
 class App extends React.Component {
   constructor() {
@@ -16,8 +20,10 @@ class App extends React.Component {
     this.state = {
       word:"",
       list : [],
-      editing: false
+      editing: false,
+      date: new Date()
     }
+
     this.setInput = this.setInput.bind(this);
     this.addItem = this.addItem.bind(this);
     this.removeItem = this.removeItem.bind(this);
@@ -91,48 +97,63 @@ class App extends React.Component {
     }
 
   render() {
+    const defaults = {
+      icon: 'PARTLY_CLOUDY_DAY',
+      color: 'goldenrod',
+      size: 70,
+      animate: true
+    };
     return (
-        <div>
-        <nav className="navbar navbar-expand-lg navbar-light bg-light">
-          <a className="navbar-brand" href="#">Fambam</a>
-          <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-            <span className="navbar-toggler-icon"></span>
-          </button>
-        </nav>
-        <div className="row">
-            <div className="col-2 offset-1">
-                <Clock />
-                <Moment format="Do MMMM YYYY" className="p-1">
-                </Moment>
-                <Moment format="dddd">
-                </Moment>
+    <React.Fragment>
+    <div><Particle/></div>
+        <div className="container">
+            <div>
+                <nav className="navbar navbar-light bg-light bg-transparent justify-content-center">
+                <ul>
+                <li><img src="https://i.pinimg.com/736x/0b/69/5b/0b695b5f633e668404a1e1ee86c2fb75.jpg" height="60px" width="60px"/></li>
+                  <a className="navbar-brand">Fambam</a>
+                </ul>
+                </nav>
             </div>
+            <hr></hr>
+                <div className="row">
+                    <div className="row m-3">
+                        <div className="col-3 px-2 justify-content-center">
+                        <ReactAnimatedWeather
+                                icon={defaults.icon}
+                                color={defaults.color}
+                                size={defaults.size}
+                                animate={defaults.animate}
+                            />
+                        </div>
+                        <div className="col-9 px-3">
+                            <Clock />
+                            <Moment format="Do MMM YYYY" className="p-1">
+                            </Moment>
+                            <Moment format="dddd">
+                            </Moment>
+                        </div>
+                    </div>
+                    <div className="ml-auto px-2">
+                            <Calendar className={styles.calendar}/>
+                    </div>
+                </div>
+                  <div className="row justify-content-center">
+                    <div className="col justify-content-center">
+                        <Input input={this.state.word} setInput={this.setInput} addItem={this.addItem}/>
+                    </div>
+                    <div className="col justify-content-center">
+                        <List
+                        list={this.state.list}
+                        removeItem={this.removeItem}
+                        editItem={this.editItem}
+                        updateItem={this.updateItem}
+                        checkItem={this.checkItem}
+                            />
+                    </div>
+                  </div>
         </div>
-
-          <div className="row justify-content-center">
-            <Input input={this.state.word} setInput={this.setInput} addItem={this.addItem}/>
-          </div>
-          <div className="row">
-            <div className="col-4 p-2 offset-1">
-                <List
-                list={this.state.list}
-                removeItem={this.removeItem}
-                editItem={this.editItem}
-                updateItem={this.updateItem}
-                checkItem={this.checkItem}
-                    />
-            </div>
-            <div className="col-4 p-2 offset-1 justify-content-center w-75">
-                <DoneList
-                list={this.state.list}
-                editItem={this.editItem}
-                updateItem={this.updateItem}
-                removeItem={this.removeItem}
-                checkItem={this.checkItem}
-                />
-            </div>
-          </div>
-        </div>
+    </React.Fragment>
     );
   }
 }
