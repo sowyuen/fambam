@@ -47,9 +47,9 @@ class List extends React.Component {
         })
 
     return (
-      <div className={styles.list} className="mx-auto justify-content-center">
-          <div className="card bg-light">
-              <div className="card-header text-center font-weight-bold">To Do List
+      <div className="justify-content-center overflow-auto">
+          <div className="card" className={styles.list}>
+              <div className="text-center font-weight-bold">To Do List
               </div>
               <div className="card-body">
                   <p className="card-text" className={styles.listText} >

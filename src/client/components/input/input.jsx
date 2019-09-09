@@ -22,8 +22,8 @@ class Input extends React.Component {
   render() {
     return (
       <div>
-        <div className="card bg-light">
-          <div className="card-header text-center font-weight-bold">Input</div>
+        <div className="card" className={styles.card}>
+          <div className="text-center font-weight-bold">Input</div>
           <div className="card-body">
             <h5 className="card-title">Typed: {this.props.input}</h5>
             <p className="card-text"><input placeholder="add a task" onChange={(event)=>{this.changeHandler(event)}}/>

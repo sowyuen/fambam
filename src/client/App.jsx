@@ -105,53 +105,63 @@ class App extends React.Component {
     };
     return (
     <React.Fragment>
-    <div><Particle/></div>
+        <div><Particle/></div>
         <div className="container">
-            <div>
-                <nav className="navbar navbar-light bg-light bg-transparent justify-content-center">
-                <ul>
-                <li><img src="https://i.pinimg.com/736x/0b/69/5b/0b695b5f633e668404a1e1ee86c2fb75.jpg" height="60px" width="60px"/></li>
-                  <a className="navbar-brand">Fambam</a>
-                </ul>
-                </nav>
+            <div className="row">
+            <nav className="navbar nav-fill w-100 bg-transparent">
+            <ul>
+            <li>
+              <img src="https://i.pinimg.com/736x/0b/69/5b/0b695b5f633e668404a1e1ee86c2fb75.jpg" height="60px" width="60px"/>
+              <a className="navbar-brand">Fambam</a>
+            </li>
+            </ul>
+              <div className={`justify-content-end d-flex ${styles.navbarText}`} id="navbarText">
+              <ul>
+                <li>
+                    <ReactAnimatedWeather
+                        icon={defaults.icon}
+                        color={defaults.color}
+                        size={defaults.size}
+                        animate={defaults.animate}
+                    />
+                </li>
+              </ul>
+              <ul>
+                <li>
+                    <Clock />
+                    <Moment format="Do MMM YYYY" className="p-1">
+                    </Moment>
+                    <Moment format="dddd">
+                    </Moment>
+                </li>
+              </ul>
+              </div>
+            </nav>
+
             </div>
-            <hr></hr>
-                <div className="row">
-                    <div className="row m-3">
-                        <div className="col-3 px-2 justify-content-center">
-                        <ReactAnimatedWeather
-                                icon={defaults.icon}
-                                color={defaults.color}
-                                size={defaults.size}
-                                animate={defaults.animate}
-                            />
-                        </div>
-                        <div className="col-9 px-3">
-                            <Clock />
-                            <Moment format="Do MMM YYYY" className="p-1">
-                            </Moment>
-                            <Moment format="dddd">
-                            </Moment>
-                        </div>
-                    </div>
-                    <div className="ml-auto px-2">
-                            <Calendar className={styles.calendar}/>
-                    </div>
+            <hr className={styles.hr}></hr>
+            <div className="row d-flex flex-col my-3">
+                <div className="col-md-6 text-center mt-5 offset-1">
+                    <Input input={this.state.word} setInput={this.setInput} addItem={this.addItem}/>
                 </div>
-                  <div className="row justify-content-center">
-                    <div className="col justify-content-center">
-                        <Input input={this.state.word} setInput={this.setInput} addItem={this.addItem}/>
-                    </div>
-                    <div className="col justify-content-center">
-                        <List
-                        list={this.state.list}
-                        removeItem={this.removeItem}
-                        editItem={this.editItem}
-                        updateItem={this.updateItem}
-                        checkItem={this.checkItem}
-                            />
-                    </div>
-                  </div>
+
+                <div className="col-md-4 offset-1">
+                    <Calendar className={styles.calendar}/>
+                </div>
+            </div>
+
+
+            <div className="row justify-content-center">
+                <div className="col justify-content-center">
+                    <List
+                    list={this.state.list}
+                    removeItem={this.removeItem}
+                    editItem={this.editItem}
+                    updateItem={this.updateItem}
+                    checkItem={this.checkItem}
+                        />
+                </div>
+            </div>
         </div>
     </React.Fragment>
     );
