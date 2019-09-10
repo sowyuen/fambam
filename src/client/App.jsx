@@ -9,7 +9,6 @@ import Calendar from 'react-calendar';
 
 import Input from "./components/input/input";
 import List from "./components/list/list";
-import DoneList from "./components/doneList/doneList";
 import Clock from "./components/clock/clock";
 import Particle from "./components/particle/particle";
 
@@ -19,7 +18,7 @@ class App extends React.Component {
     super();
     this.state = {
       word:"",
-      list : [],
+      list : ["study","gym"],
       editing: false,
       date: new Date()
     }
@@ -30,27 +29,40 @@ class App extends React.Component {
     this.editItem = this.editItem.bind(this);
     this.updateItem = this.updateItem.bind(this);
     this.checkItem = this.checkItem.bind(this);
-
   }
+   componentDidMount() {
+        const list = window.localStorage.getItem('list');
+        const parsedList = JSON.parse(list);
+        if (parsedList !== null){
+            this.setState({
+                list: parsedList,
+            })
+        }
+    }
+
   setInput (input){
     this.setState({word: input})
   }
-    changeHandler(){
+  changeHandler(){
     this.setState({word:event.target.value});
-    console.log("change", event.target.value);
   }
 
   addItem(){
-    this.state.list.push(this.state.word);
-    this.setState(this.state.list);
-    console.log("this.state.list",this.state.list);
+    let listArray = this.state.list;
+    listArray.push(this.state.word);
+    this.setState({
+      list: listArray,
+      word: ""
+    }, () => {
+        window.localStorage.setItem('list', JSON.stringify(this.state.list));
+    });
   }
-
-  removeItem(index) {
+    removeItem(index) {
         let list = this.state.list;
         list.splice(index, 1);
         this.setState({list: list});
-  }
+        localStorage.clear();
+    }
 
   editItem(index){
         let list = this.state.list;
@@ -108,52 +120,53 @@ class App extends React.Component {
         <div><Particle/></div>
         <div className="container">
             <div className="row">
-            <nav className="navbar nav-fill w-100 bg-transparent">
-            <ul>
-            <li>
-              <img src="https://i.pinimg.com/736x/0b/69/5b/0b695b5f633e668404a1e1ee86c2fb75.jpg" height="60px" width="60px"/>
-              <a className="navbar-brand">Fambam</a>
-            </li>
-            </ul>
-              <div className={`justify-content-end d-flex ${styles.navbarText}`} id="navbarText">
-              <ul>
-                <li>
-                    <ReactAnimatedWeather
-                        icon={defaults.icon}
-                        color={defaults.color}
-                        size={defaults.size}
-                        animate={defaults.animate}
-                    />
-                </li>
-              </ul>
-              <ul>
-                <li>
-                    <Clock />
-                    <Moment format="Do MMM YYYY" className="p-1">
-                    </Moment>
-                    <Moment format="dddd">
-                    </Moment>
-                </li>
-              </ul>
-              </div>
-            </nav>
-
+                <nav className="navbar nav-fill w-100 bg-transparent">
+                    <ul>
+                        <li>
+                          <img src="https://i.pinimg.com/736x/0b/69/5b/0b695b5f633e668404a1e1ee86c2fb75.jpg" height="60px" width="60px"/>
+                          <a className="navbar-brand">Fambam</a>
+                        </li>
+                    </ul>
+                    <div className={`justify-content-end d-flex ${styles.navbarText}`} id="navbarText">
+                      <ul>
+                        <li>
+                            <ReactAnimatedWeather
+                                icon={defaults.icon}
+                                color={defaults.color}
+                                size={defaults.size}
+                                animate={defaults.animate}
+                            />
+                        </li>
+                      </ul>
+                      <ul>
+                        <li>
+                            <Clock />
+                            <Moment format="Do MMM YYYY" className="p-1">
+                            </Moment>
+                            <Moment format="dddd">
+                            </Moment>
+                        </li>
+                      </ul>
+                    </div>
+                </nav>
             </div>
             <hr className={styles.hr}></hr>
             <div className="row d-flex flex-col my-3">
                 <div className="col-md-6 text-center mt-5 offset-1">
-                    <Input input={this.state.word} setInput={this.setInput} addItem={this.addItem}/>
+                    <Input
+                    input={this.state.word}
+                    setInput={this.setInput}
+                    addItem={this.addItem}
+                        />
                 </div>
-
                 <div className="col-md-4 offset-1">
                     <Calendar className={styles.calendar}/>
                 </div>
             </div>
-
-
             <div className="row justify-content-center">
                 <div className="col justify-content-center">
                     <List
+                    changeHandler={this.changeHandler}
                     list={this.state.list}
                     removeItem={this.removeItem}
                     editItem={this.editItem}
@@ -167,5 +180,4 @@ class App extends React.Component {
     );
   }
 }
-
 export default hot(module)(App);
