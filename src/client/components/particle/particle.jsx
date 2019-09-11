@@ -10,10 +10,10 @@ render() {
               params={{
                 "particles": {
                       "number": {
-                        "value": 90,
+                        "value": 55,
                         "density": {
                           "enable": true,
-                          "value_area": 800
+                          "value_area": 500
                         }
                       },
                       "color": {
@@ -35,35 +35,35 @@ render() {
                         }
                       },
                       "opacity": {
-                        "value": 0.3,
+                        "value": 0.2,
                         "random": false,
                         "anim": {
                           "enable": false,
-                          "speed": 2,
+                          "speed": 1,
                           "opacity_min": 0.1,
                           "sync": false
                         }
                       },
                       "size": {
-                        "value": 8,
+                        "value": 7,
                         "random": true,
                         "anim": {
                           "enable": false,
-                          "speed": 100,
+                          "speed": 50,
                           "size_min": 0.1,
                           "sync": false
                         }
                       },
                       "line_linked": {
                         "enable": true,
-                        "distance": 180,
+                        "distance": 150,
                         "color": "#dfe6e9",
-                        "opacity": 1.5,
-                        "width": 1
+                        "opacity": 2,
+                        "width": 0.8
                       },
                       "move": {
                         "enable": true,
-                        "speed": 8,
+                        "speed": 5,
                         "direction": "none",
                         "random": false,
                         "straight": false,

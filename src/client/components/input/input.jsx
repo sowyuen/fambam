@@ -22,9 +22,8 @@ class Input extends React.Component {
     return (
       <div>
         <div className={`card ${styles.card}`}>
-          <div className="text-center font-weight-bold">Input</div>
+          <div className="text-center font-weight-bold">Add Task</div>
           <div className="card-body">
-            <h5 className="card-title">Typed: {this.props.input}</h5>
             <p className="card-text"><input placeholder="add a task" onChange={(event)=>{this.changeHandler(event)}}/>
             <button onClick={() => this.doSomething()}>add item</button></p>
           </div>

@@ -5,20 +5,19 @@ import styles from './style.scss';
 import Moment from 'react-moment';
 import 'moment-timezone';
 import ReactAnimatedWeather from 'react-animated-weather';
-import Calendar from 'react-calendar';
 
 import Input from "./components/input/input";
 import List from "./components/list/list";
 import Clock from "./components/clock/clock";
 import Particle from "./components/particle/particle";
-
+import Calendar from "./components/calendar/calendar";
 
 class App extends React.Component {
   constructor() {
     super();
     this.state = {
       word:"",
-      list : ["study","gym"],
+      list : [],
       editing: false,
       date: new Date()
     }
@@ -107,7 +106,7 @@ class App extends React.Component {
         }
         this.setState({list: list});
     }
-
+    // <hr className={styles.hr}></hr>
   render() {
     const defaults = {
       icon: 'PARTLY_CLOUDY_DAY',
@@ -120,7 +119,7 @@ class App extends React.Component {
         <div><Particle/></div>
         <div className="container">
             <div className="row">
-                <nav className="navbar nav-fill w-100 bg-transparent">
+                <nav className="navbar nav-fill w-100 bg-light">
                     <ul>
                         <li>
                           <img src="https://i.pinimg.com/736x/0b/69/5b/0b695b5f633e668404a1e1ee86c2fb75.jpg" height="60px" width="60px"/>
@@ -150,8 +149,8 @@ class App extends React.Component {
                     </div>
                 </nav>
             </div>
-            <hr className={styles.hr}></hr>
-            <div className="row d-flex flex-col my-3">
+
+            <div className="row row-flex h-100 d-flex flex-col my-3">
                 <div className="col-md-6 text-center mt-5 offset-1">
                     <Input
                     input={this.state.word}
@@ -159,11 +158,11 @@ class App extends React.Component {
                     addItem={this.addItem}
                         />
                 </div>
-                <div className="col-md-4 offset-1">
-                    <Calendar className={styles.calendar}/>
+                <div className="col-md-4 offset-1 d-flex">
+                    <Calendar />
                 </div>
             </div>
-            <div className="row justify-content-center">
+            <div className="row row-flex h-100 justify-content-center">
                 <div className="col justify-content-center">
                     <List
                     changeHandler={this.changeHandler}

@@ -1,9 +1,9 @@
 html, body {
   min-width: 700px;
   background-color:#fff;
-  font-family: 'Poiret One', cursive;
-}
+font-family: 'Antic', sans-serif;
 
+}
 .calendar{
 	width: 100%;
 }
@@ -14,4 +14,30 @@ html, body {
 
 .hr {
 	margin: 0;
+}
+
+.calendar{
+    bottom:15%;
+    -webkit-animation:linear;
+    -webkit-animation-name: runButton;
+    -webkit-animation-duration: 5s;
+    left: 100%;
+}
+@-webkit-keyframes runButton {
+    0% { left: 0; opacity: 1;}
+    50%{ left: 50%; opacity: 0.5;}
+    100%{ left: 100%; opacity: 0;}
+}
+
+.calendarButton{
+    bottom:15%;
+    -webkit-animation:linear;
+    -webkit-animation-name: run;
+    -webkit-animation-duration: 4s;
+    left: 100%;
+}
+@-webkit-keyframes run {
+    0% { left: 0; opacity: 1;}
+    50%{ left: 50%; opacity: 0.5;}
+    100%{ left: 100%; opacity: 0;}
 }

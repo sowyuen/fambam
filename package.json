@@ -94,6 +94,8 @@
     "react-particles-js": "^2.7.0",
     "request": "^2.88.0",
     "sanitize.css": ">=8.0.0",
+    "semantic-ui-css": "^2.4.1",
+    "semantic-ui-react": "^0.88.1",
     "webpack": "^4.29.4",
     "webpack-dev-middleware": ">=3.5.2",
     "webpack-hot-middleware": ">=2.24.3",

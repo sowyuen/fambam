@@ -38,7 +38,7 @@ class List extends React.Component {
 
     return (
       <div className="justify-content-center overflow-auto">
-          <div className={`card ${styles.list}`}>
+          <div className={`card w-50 offset-1 ${styles.list}`}>
               <div className="text-center font-weight-bold">To Do List
               </div>
               <div className="card-body">
