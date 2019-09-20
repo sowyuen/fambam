@@ -17,7 +17,7 @@ class App extends React.Component {
     super();
     this.state = {
       word:"",
-      list : [],
+      list : ["Resume/Cover Letter","Job Search"],
       editing: false,
       date: new Date()
     }
